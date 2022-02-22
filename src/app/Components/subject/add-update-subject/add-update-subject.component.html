@@ -1,0 +1,60 @@
+<div style="width: 70%;margin:auto;">
+    <div class="r row">
+        <div class="col-md-12">
+            <h2>Add subject</h2>
+        </div>
+    </div>
+    <div class="r row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary" routerLink="/subjects">Show All</button>
+        </div>
+    </div>
+    <form (ngSubmit)="submit()" [formGroup]='frm'>
+        <input type="hidden" formControlName="id"/> <!--id-->
+        <input type="hidden" formControlName="courseId"/><!--courseId-->
+        <input type="hidden" formControlName="isDeleted"/><!--isDeleted-->
+        <div class="r row">
+            <div class="col-md-3">
+                Subject *
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control"  formControlName="subjectName" required>
+                <div *ngIf="f.subjectName.invalid && (f.subjectName.dirty || f.subjectName.touched)">
+                    <div *ngIf="f.subjectName.errors?.required" class="text-danger">
+                        Please enter the subject name
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="r row">
+            <div class="col-md-3">
+                course *
+            </div>
+            <div class="col-md-9">
+                <select class="form-control" formControlName="courseId" required>
+                    <option value="0">--select--</option>
+                    <option *ngFor="let course of courses" [ngValue]="course.id">
+                        {{course.courseName}}
+                    </option>
+                </select>
+                <div *ngIf="f.courseId.invalid && (f.courseId.touched || f.courseId.dirty)"> 
+                   <div *ngIf="f.courseId.errors?.required" class="text-danger">
+                       Please select a course
+                   </div>
+                </div>
+            </div>
+        </div>
+        <div class="r row" *ngIf="status">
+            <div class="col-md-12">
+                <span [ngClass]="{'text-success':status.statusCode==1,'text-danger':status.statusCode==0}">{{status.message}}</span>
+            </div>
+           
+        </div>
+        <div class="r row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-info" [disabled]="frm.invalid">Save</button>
+            </div>
+           
+        </div>
+    </form>
+</div>

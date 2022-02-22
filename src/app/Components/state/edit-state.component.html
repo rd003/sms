@@ -1,0 +1,46 @@
+<div style="width: 50%;margin-left: 5%;">
+    <div class="row r">
+        <div class="col-md-12">
+            <h2>Update Student</h2>
+        </div>
+    </div>
+
+    <div class="row r">
+        <div class="col-md-12">
+            <button class="btn btn-info" routerLink="/states">Back</button>
+        </div>
+    </div>
+
+
+    <form [formGroup]="frm" (ngSubmit)="onSubmit()">
+        <input type="hidden" formControlName="id">
+        <div class="row r">
+            <div class="col-md-3">
+                Name*: <input type="text" formControlName="stateName" class="form-control">
+            </div>
+            <div class="col-md-9">
+                <input type="hidden" name="id">
+                <div *ngIf="f.stateName.invalid && (f.stateName.dirty || f.stateName.touched)">
+                    <div *ngIf="f.stateName.errors?.required">
+                         State Name is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row r" *ngIf="status">
+            <div class="col-md-12">
+            <div  [ngClass]="{'alert alert-success':status.statusCode==1,'alert alert-danger':status.statusCode==0}">
+                 {{status.message}}
+            </div>
+        </div>
+        </div>
+
+        <div class="row r">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary" >Save</button>
+            </div>
+        </div>
+
+    </form>
+</div>

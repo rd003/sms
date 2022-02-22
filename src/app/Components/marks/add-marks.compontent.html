@@ -1,0 +1,72 @@
+<div style="width: 50%;margin-left:5%;">
+    <h2>Add Students</h2>
+    <div class="row r">
+        <div class="col-md-12">
+            <input type="button" routerLink="/student" class="btn btn-info" value="Back">
+        </div>
+    </div>
+   <form [formGroup]="frm" (ngSubmit)="onSubmit()">
+       <input type="hidden" formControlName="id"/>
+       <input type="hidden" formControlName="student_Id"/>
+    <div class="row r">
+        <div class="col-md-3">Subject</div>
+        <div class="col-md-9">
+            <select formControlName="subject_Id" class="form-control">
+                <option [value]="">--select--</option>
+                <option *ngFor="let subject of studentSubjects" [ngValue]="subject.subjectId">{{subject.subjectName}}</option>
+            </select>
+            <div class="text-danger" *ngIf="f.subject_id.invalid && (f.subject_id.dirty || f.subject_id.touched)">
+                <div *ngIf="f.subject_id.errors?.required">
+                    Please enter subject
+                </div>
+             </div>
+        </div>
+    </div>
+
+    <div class="row r">
+        <div class="col-md-3">Year From*</div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" formControlName="yearFrom">
+        </div>
+    </div>
+
+    <div class="row r">
+        <div class="col-md-3">Year To*</div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" formControlName="yearTo">
+
+        </div>
+    </div>
+
+
+    <div class="row r">
+        <div class="col-md-3">Max Marks*</div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" formControlName="maxMarks">
+
+        </div>
+    </div>
+
+
+    <div class="row r">
+        <div class="col-md-3">Gained Marks*</div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" formControlName="gainedMarks">
+
+        </div>
+    </div>
+
+   
+    <div class="row r" *ngIf="status">
+        <div class="col-md-12">
+           <div class="alert alert-info">{{status.message}}</div>
+        </div>
+    </div>
+    <div class="row r">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-info">Submit</button>
+        </div>
+    </div>
+
+   </form>
+</div>

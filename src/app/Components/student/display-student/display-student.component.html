@@ -1,0 +1,49 @@
+<div style="width:50%;margin-left: 2%;">
+  <div class="row r">
+      <div class="col-md-12">
+          <h2>
+              Students
+          </h2>
+      </div>
+  </div>
+  
+  <div class="row r">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-info" routerLink="/add-student">Add student</button>
+    </div>
+   
+</div>
+
+<div class="row r">
+    <div class="col-md-12">
+       <table class="table table-bordered">
+           <thead>
+         <tr>
+             <th>Name</th>
+             <th>Course</th>
+             <th>Age</th>
+             <th>Address</th>
+             <th>Action</th>
+
+         </tr>
+        </thead>
+        <tbody>
+         <tr *ngFor="let student of students,index as i">
+            <td>{{student.name}}</td>
+            <td>{{student.courseName}}</td>
+            <td>{{student.age}}</td>
+            <td>{{student.address}}</td>
+            <td>
+                <button type="button" class="btn btn-success"(click)="editStudent(student.id)">Edit</button>
+                <button type="button" class="btn btn-danger" (click)="deleteStudent(student.id,i)" >Delete</button>
+                <button type="button" class="btn btn-info" (click)="addSubject(student.id)">Add-Subjects</button>
+                <button type="button" class="btn btn-primary" (click)="displaySubject(student.id)">Subjects</button>
+                <button type="button" class="btn btn-primary" (click)="addMarks(student.id)">Add-Marks</button>
+            </td>
+         </tr>
+        </tbody>
+       </table>
+    </div>
+   
+</div>
+</div>

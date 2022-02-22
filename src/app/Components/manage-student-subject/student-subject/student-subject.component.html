@@ -1,0 +1,27 @@
+<div style="width: 50%;margin-left: 5%;">
+    <h2>Subjects</h2>
+    <button routerLink="/student" class="btn btn-info" type="button">
+        Back
+    </button>
+
+    <div *ngIf="studentSubjectData">
+      <table class="table table-bordered">
+          <thead>
+              <tr>
+              <th></th>
+              <th>Subjects</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let subject of studentSubjectData.subjects">
+                  <td>
+                      <input type="checkbox" [(ngModel)]="subject.isChecked">
+                  </td>
+                  <td>{{subject.subjectName}}</td>
+              </tr>
+          </tbody>
+      </table>
+        
+      <button type="button" class="btn btn-danger" (click)="removeSubjects()">Remove</button>
+    </div>
+</div>

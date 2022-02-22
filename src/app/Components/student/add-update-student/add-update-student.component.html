@@ -1,0 +1,79 @@
+<div style="width: 50%; margin-left:2% ;">
+  <div class="row r">
+      <div class="col-md-12">
+          <h2>Add/Update student</h2>
+      </div>
+  </div>
+  <div class="row r">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-info" routerLink="/student">Show All</button>
+    </div>
+  </div>
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+       <div class="row r">
+           <input type="hidden" formControlName="id">
+           <div class="col-md-4">Name *</div>
+           <div class="col-md-8">
+               <input type="text" required class="form-control" formControlName="name">
+               <div class="alert alert-danger" *ngIf="f.name.invalid && (f.name.touched || f.name.dirty)">
+                   <div *ngIf="f.name.errors?.required">
+                       Name is required
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="row r">
+        <div class="col-md-4">Course *</div>
+        <div class="col-md-8">
+            <select class="form-control" required formControlName="course_Id">
+                <option value="">--select--</option>
+                <option *ngFor="let course of courses" [ngValue]="course.id">{{course.courseName}}</option>
+               
+            </select>
+            <div class="alert alert-danger" *ngIf="f.course_Id.invalid && (f.course_Id.touched || f.course_Id.dirty)">
+                  <div *ngIf="f.course_Id.errors?.required">
+                      course is required
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row r">
+        <div class="col-md-4">Age *</div>
+        <div class="col-md-8">
+            <input type="number" required class="form-control" formControlName="age">
+            <div class="alert alert-danger" *ngIf="f.age.invalid && (f.age.touched|| f.age.dirty)">
+               <div *ngIf="f.age.errors?.required">
+                   Age is required.
+               </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row r">
+        <div class="col-md-4">Address *</div>
+        <div class="col-md-8">
+            <input type="text" required class="form-control" formControlName="address">
+
+            <div class="alert alert-danger" *ngIf="f.address.invalid && (f.address.dirty || f.address.touched)">
+                <div *ngIf="f.address.errors?.required">
+                    Address is required
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row r" *ngIf="status">
+        <div class="col-md-12" [ngClass]="{'alert alert-danger':status.statusCode==0,'alert alert-success':status.statusCode>0}">
+           {{status.message}}
+        </div>
+    </div>
+
+    <div class="row r">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-info" [disabled]="studentForm.invalid">Save</button>
+        </div>
+    </div>
+
+  </form>
+</div>

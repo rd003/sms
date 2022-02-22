@@ -1,0 +1,67 @@
+<div style="width:50%;margin-left: 4%;">
+    <h2>Add-states</h2>
+    <button type="button" class="btn n" routerLink="/states"><<--</button>
+    
+     <div *ngIf="states.length>0">
+        <div class="row r">
+         <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <th>State</th>
+                    <th>Delete</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let state of states;index as i">
+                      <td>{{state.stateName}}</td>
+                      <td>
+                          <button type="button" (click)="remove(i)" class="btn btn-danger">Delete</button>
+                      </td>
+                    </tr>
+                </tbody>
+            </table>
+         </div>
+    </div>
+    <div class="row r" *ngIf="submitting">
+        <div class="col-md-12">
+            wait............
+        </div>
+    </div>
+    <div class="row r">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-info" [disabled]="submitting" (click)="save()">Save</button>
+        </div>
+    </div>
+</div>
+
+  <hr/>
+  <div class="row r">
+      <div class="col-md-12">
+        <form (ngSubmit)="onPost()" [formGroup]="frm">
+            <div class="row r">
+                <div class="col-md-3">Name</div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" formControlName="stateName"/>
+                    <div *ngIf="f.stateName.invalid && (f.stateName.dirty || f.stateName.touched)">
+                        <div *ngIf="f.stateName.errors?.required" class="text-danger">
+                             Name is required
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-info" [disabled]="frm.invalid">+Add</button>
+                </div>
+            </div>
+            <div class="row r" *ngIf="status">
+                <div class="col-md-12">
+                  <div [ngClass]="{'alert alert-danger':status.statusCode==0,'alert alert-success':status.statusCode==1}">
+                      {{status.message}}
+                  </div>
+                </div>
+            </div>
+    
+           
+        </form>
+      </div>
+  </div>
+
+</div>

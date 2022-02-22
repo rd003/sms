@@ -1,0 +1,35 @@
+<div style="width: 50%;margin-left:5%;">
+    <h2>States</h2>
+    <div class="row r">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-info" routerLink="/add-state">Add More</button>
+        </div>
+    </div>
+   <div class="row r" *ngIf="showDelete">
+       <div class="col-md-12">
+        <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
+       </div>
+   </div>
+    <div class="row r">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>State</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let state of states;index as i">
+                        <td><input type="checkbox" name="isChecked" [(ngModel)]="state.isChecked" (change)="check()"> {{i+1}}</td>
+                        <td>{{state.stateName}}</td>
+                        <td>
+                            <button type="button" class="btn btn-success" (click)="edit(state.id)">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

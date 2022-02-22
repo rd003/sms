@@ -1,0 +1,45 @@
+<div style="width: 50%;margin-left: 2%;">
+ <div class="row">
+     <div class="col-md-12">
+         <h2>Add/Update city</h2>
+     </div>
+ </div>
+ <div class="row">
+    <div class="col-md-12">
+        <button class="btn btn-info" type="button" routerLink="/city">All cities</button>
+    </div>
+</div>
+<form (ngSubmit)="onSubmit()" #cityForm="ngForm">
+<div class="row">
+    <input type="hidden"  [(ngModel)]="city.id" name="cityId"/>
+    <div class="col-md-4">
+      City 
+    </div>
+    <div class="col-md-8">
+       <input type="text" required minlength="4" #name="ngModel" class="form-control" [(ngModel)]="city.cityName" name="cityName"/>
+     <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+        <div *ngIf="name.errors?.required">
+            Name is required.
+          </div>
+          <div *ngIf="name.errors?.minlength">
+              Name must be 4 characters long
+          </div>
+        
+     </div>
+    </div>
+</div>
+<div class="row" *ngIf="status"> 
+    <div class="col-md-12" [ngClass]="{'text-danger':status.statusCode==0,'text-success':status.statusCode==1}"  >
+        {{status.message}}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <button type="submit" class="btn btn-info" [disabled]="!cityForm.valid">
+            Save
+        </button>
+    </div>
+
+</div>
+</form>
+</div>
